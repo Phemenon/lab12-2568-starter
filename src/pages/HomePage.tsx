@@ -14,6 +14,8 @@ import { IconTrash } from "@tabler/icons-react";
 import { LoremIpsum } from "lorem-ipsum";
 import { randomId } from "@mantine/hooks";
 import { v4 as uuidv4 } from "uuid";
+import { useMantineColorScheme } from "@mantine/core";
+
 interface Task {
   id: string;
   title: string;
@@ -80,6 +82,9 @@ export default function HomePage() {
     );
   };
 
+  const { colorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === "dark";
+
   return (
     <Container size="sm" py="lg">
       <Stack align="center">
@@ -111,32 +116,26 @@ export default function HomePage() {
                       Due: {task.dueDate.toLocaleDateString()}
                     </Text>
                   )}
+
                   {/* แสดง Date & Time */}
-                  <Text size="xs" c="gray">
-                    Done at:
+                  <Text size="xs" c={isDark ? "yellow" : "grape"}>
+                    Done at:{" "}
+                    {task.isDone ? task.dueDate?.toLocaleString() : "Not done"}
                   </Text>
                 </Stack>
                 {/* แสดง Button Done & Button Delete */}
                 <Group>
-                  <Button
-                    style={{
-                      backgroundColor: "#71c32fda",
-                      color: "#dce6e7ff",
-                    }}
-                    variant="light"
-                    size="xs"
-                    onClick={() => toggleDoneTask(task.id)}
-                  >
-                    Done
-                  </Button>
-                  <Button
-                    color="chanadda"
-                    variant="light"
-                    size="xs"
+                  <Checkbox
+                    label="Done"
+                    onChange={() => toggleDoneTask(task.id)}
+                  />
+                  <ActionIcon
+                    variant="filled"
+                    color="gray"
                     onClick={() => deleteTask(task.id)}
                   >
-                    Delete
-                  </Button>
+                    <IconTrash size={16} color={isDark ? "orange" : "pink"} />
+                  </ActionIcon>
                 </Group>
               </Group>
             </Card>

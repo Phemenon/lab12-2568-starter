@@ -35,12 +35,12 @@ export default function HeaderComponent({
       <Group gap={5}>
         <ActionIcon
           variant="filled"
-          color={isDark ? "yellow" : "blue"}
+          color={isDark ? "blue" : "yellow"}
           onClick={toggleColorScheme}
           size="lg"
           aria-label={isDark ? "Light mode" : "Dark mode"}
         >
-          {isDark ? <IconSun size={20} /> : <IconMoon size={20} />}
+          {isDark ? <IconMoon size={20} /> : <IconSun size={20} />}
         </ActionIcon>
       </Group>
     </Group>
