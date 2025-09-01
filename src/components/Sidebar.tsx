@@ -53,7 +53,7 @@ export default function Sidebar() {
             color="green"
             withBorder
           >
-            <Avatar src="public/me.jpg" />
+            <Avatar src="me.jpg" />
           </Indicator>
           <Text>User : thanakon : Admin</Text>
         </Group>
